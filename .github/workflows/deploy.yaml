@@ -10,7 +10,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v5
       name: Build & push Docker image
       with:
-        image: ${{ github.repository }}
+        image: althexor/gha_poc_azure
         tags: ${{ github.sha }}
         registry: docker.io
         dockerfile: Dockerfile
@@ -21,7 +21,7 @@ jobs:
       uses: steebchen/kubectl@v2.0.0
       with: # defaults to latest kubectl binary version
         config: ${{ secrets.KUBE_CONFIG_DATA }}
-        command: set image --record deployment/my-app my-app=${{ github.repository }}:${{ github.sha }}
+        command: set image --record deployment/my-app my-app=althexor/gha_poc_azure:${{ github.sha }}
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
       with:
